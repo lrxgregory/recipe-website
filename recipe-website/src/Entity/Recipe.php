@@ -2,11 +2,15 @@
 
 namespace App\Entity;
 
-use App\Repository\RecipeRepository;
+use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\RecipeRepository;
+use App\Validator\BanWords;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 #[ORM\Entity(repositoryClass: RecipeRepository::class)]
+#[UniqueEntity('title')]
 class Recipe
 {
     #[ORM\Id]
@@ -15,6 +19,11 @@ class Recipe
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\Length(
+        min: 5,
+        minMessage: 'Le titre doit contenir minimum {{ limit }} caractères',
+    )]
+    #[BanWords]
     private ?string $title = null;
 
     #[ORM\Column(length: 255)]
@@ -30,6 +39,8 @@ class Recipe
     private ?\DateTimeImmutable $updatedAt = null;
 
     #[ORM\Column]
+    #[Assert\Positive]
+    #[Assert\LessThan(value: 1440)]
     private ?int $duration = null;
 
     public function getId(): ?int

@@ -12,6 +12,8 @@ use Symfony\Component\String\Slugger\AsciiSlugger;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Form\Extension\Core\Type\IntegerType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 
 class RecipeType extends AbstractType
 {
@@ -20,7 +22,8 @@ class RecipeType extends AbstractType
         $builder
             ->add('title', TextType::class, ['label' => 'Titre'])
             ->add('content')
-            ->add('duration')
+            ->add('content', TextareaType::class, ['label' => 'Détail de la recette'])
+            ->add('duration', IntegerType::class, ['label' => 'Durée de la recette en minutes'])
             ->add('save', SubmitType::class, ['label' => 'Envoyer'])
             ->addEventListener(FormEvents::POST_SUBMIT, $this->autoCompleteSlugAndDate(...));;
     }
