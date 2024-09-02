@@ -12,6 +12,7 @@ use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\Event\PostSubmitEvent;
 use Symfony\Component\String\Slugger\AsciiSlugger;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
@@ -30,6 +31,9 @@ class RecipeType extends AbstractType
             ])
             ->add('content', TextareaType::class, ['label' => 'Détail de la recette'])
             ->add('duration', IntegerType::class, ['label' => 'Durée de la recette en minutes'])
+            ->add('thumbnailFile', FileType::class, [
+                'label' => 'Image',
+            ])
             ->add('save', SubmitType::class, ['label' => 'Envoyer'])
             ->addEventListener(FormEvents::POST_SUBMIT, $this->autoCompleteSlugAndDate(...));;
     }
