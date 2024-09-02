@@ -1,4 +1,4 @@
-{% extends 'base.html.twig' %}
+{% extends 'admin/admin.html.twig' %}
 
 {% block title %}
 	Recette
@@ -7,6 +7,5 @@
 
 {% block body %}
 	<h1>{{ recipe.title }}</h1>
-	<p>
 
-		{{ form(form)}}{% endblock %}
+	{{ form(form)}}{% endblock %}
