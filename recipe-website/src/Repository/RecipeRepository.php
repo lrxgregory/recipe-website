@@ -5,15 +5,37 @@ namespace App\Repository;
 use App\Entity\Recipe;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
+use Knp\Component\Pager\Pagination\PaginationInterface;
+use Knp\Component\Pager\PaginatorInterface;
 
 /**
  * @extends ServiceEntityRepository<Recipe>
  */
 class RecipeRepository extends ServiceEntityRepository
 {
-    public function __construct(ManagerRegistry $registry)
+    public function __construct(ManagerRegistry $registry, private PaginatorInterface $paginator)
     {
         parent::__construct($registry, Recipe::class);
+    }
+
+    public function paginateRecipes(int $page): PaginationInterface
+    {
+        $queryBuilder = $this->createQueryBuilder('r')
+            ->leftJoin('r.category', 'c') // 'c' is the alias for the Category entity
+            ->addSelect('c'); // Add 'c' to the select to ensure fields from Category are included
+
+        // Pagination with proper alias references in the sortFieldAllowList
+        return $this->paginator->paginate(
+            $queryBuilder,
+            $page,
+            20,
+            [
+                'distinct' => false,
+                'defaultSortFieldName' => 'r.title',
+                'defaultSortDirection' => 'asc',
+                'sortFieldAllowList' => ['r.title', 'c.name'] // Correct alias for sorting fields
+            ]
+        );
     }
 
     /**

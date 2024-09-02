@@ -9,8 +9,8 @@
 	<table class="table">
 		<thead>
 			<tr>
-				<th>Titre</th>
-				<th>Catégorie</th>
+				<th>{{ knp_pagination_sortable(recipes, 'Titre', 'r.title') }}</th>
+				<th>{{ knp_pagination_sortable(recipes, 'Catégorie', 'c.name') }}</th>
 				<th>Actions</th>
 			</tr>
 		</thead>
@@ -37,6 +37,9 @@
 			{% endfor %}
 		</tbody>
 	</table>
+
+	{{ knp_pagination_render(recipes) }}
+
 	<button class="btn btn-secondary">
 		<a class="text-decoration-none text-reset" href="{{ path('admin.recipe.create') }}">Ajouter une nouvelle recette</a>
 	</button>
