@@ -3,8 +3,9 @@
 namespace App\Repository;
 
 use App\Entity\Category;
-use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use App\DTO\CategoryWithCountDTO;
 use Doctrine\Persistence\ManagerRegistry;
+use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 
 /**
  * @extends ServiceEntityRepository<Category>
@@ -14,6 +15,19 @@ class CategoryRepository extends ServiceEntityRepository
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, Category::class);
+    }
+
+    /**
+     * @return CategoryWithCountDTO[]
+     */
+    public function findAllWithCount(): array
+    {
+        return $this->createQueryBuilder('c')
+            ->select('NEW App\DTO\CategoryWithCountDTO(c.id, c.name, COUNT(r.id))')
+            ->leftJoin('c.recipes', 'r') // Assuming 'recipes' is the field name in the Category entity for the relationship
+            ->groupBy('c.id')
+            ->getQuery()
+            ->getResult();
     }
 
     //    /**
