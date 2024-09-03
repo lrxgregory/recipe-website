@@ -7,6 +7,7 @@ use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use App\Repository\RecipeRepository;
 use Symfony\Component\HttpFoundation\File\File;
+use Symfony\Component\Serializer\Annotation\Groups;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Security\Http\Attribute\IsGranted;
@@ -20,6 +21,7 @@ class Recipe
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
+    #[Groups(['recipe.index'])]
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
@@ -28,12 +30,15 @@ class Recipe
         minMessage: 'Le titre doit contenir minimum {{ limit }} caractères',
     )]
     #[BanWords]
+    #[Groups(['recipe.index', 'recipe.show', 'recipe.create'])]
     private ?string $title = null;
 
     #[ORM\Column(length: 255)]
+    #[Groups(['recipe.create'])]
     private ?string $slug = null;
 
     #[ORM\Column(type: Types::TEXT)]
+    #[Groups(['recipe.show', 'recipe.create'])]
     private ?string $content = null;
 
     #[ORM\Column]
@@ -45,9 +50,11 @@ class Recipe
     #[ORM\Column]
     #[Assert\Positive]
     #[Assert\LessThan(value: 1440)]
+    #[Groups(['recipe.index', 'recipe.show', 'recipe.create'])]
     private ?int $duration = null;
 
     #[ORM\ManyToOne(inversedBy: 'recipes')]
+    #[Groups(['recipe.index', 'recipe.show'])]
     private ?Category $category = null;
 
     #[ORM\Column(length: 255, nullable: true)]

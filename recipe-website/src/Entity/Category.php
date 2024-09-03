@@ -6,6 +6,7 @@ use Doctrine\ORM\Mapping as ORM;
 use App\Repository\CategoryRepository;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Component\Serializer\Annotation\Groups;
 use Symfony\Component\Security\Http\Attribute\IsGranted;
 
 #[ORM\Entity(repositoryClass: CategoryRepository::class)]
@@ -18,6 +19,7 @@ class Category
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
+    #[Groups(['recipe.index', 'recipe.show'])]
     private ?string $name = null;
 
     #[ORM\Column(length: 255)]
