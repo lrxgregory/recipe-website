@@ -17,6 +17,7 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
+use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 
 class RecipeType extends AbstractType
 {
@@ -29,6 +30,16 @@ class RecipeType extends AbstractType
             ->add('duration', IntegerType::class, ['label' => 'Durée de la recette en minutes'])
             ->add('thumbnailFile', FileType::class, [
                 'label' => 'Image',
+            ])
+            ->add('quantities', CollectionType::class, [
+                'entry_type' => QuantityType::class,
+                'allow_add' => true,
+                'allow_delete' => true,
+                'by_reference' => false,
+                'entry_options' => ['label' => false],
+                'attr' => [
+                    'data-controller' => 'form-collection'
+                ]
             ])
             ->add('save', SubmitType::class, ['label' => 'Envoyer'])
             ->addEventListener(FormEvents::POST_SUBMIT, $this->autoCompleteSlugAndDate(...));;
