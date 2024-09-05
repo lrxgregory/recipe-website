@@ -41,6 +41,21 @@
     "knplabs/knp-paginator-bundle": {
         "version": "v6.4.0"
     },
+    "symfony/asset-mapper": {
+        "version": "7.1",
+        "recipe": {
+            "repo": "github.com/symfony/recipes",
+            "branch": "main",
+            "version": "6.4",
+            "ref": "6c28c471640cc2c6e60812ebcb961c526ef8997f"
+        },
+        "files": [
+            "assets/app.js",
+            "assets/styles/app.css",
+            "config/packages/asset_mapper.yaml",
+            "importmap.php"
+        ]
+    },
     "symfony/console": {
         "version": "7.1",
         "recipe": {
@@ -143,6 +158,20 @@
             "config/routes/security.yaml"
         ]
     },
+    "symfony/stimulus-bundle": {
+        "version": "2.19",
+        "recipe": {
+            "repo": "github.com/symfony/recipes",
+            "branch": "main",
+            "version": "2.13",
+            "ref": "6acd9ff4f7fd5626d2962109bd4ebab351d43c43"
+        },
+        "files": [
+            "assets/bootstrap.js",
+            "assets/controllers.json",
+            "assets/controllers/hello_controller.js"
+        ]
+    },
     "symfony/translation": {
         "version": "7.1",
         "recipe": {
@@ -168,6 +197,24 @@
             "config/packages/twig.yaml",
             "templates/base.html.twig"
         ]
+    },
+    "symfony/ux-autocomplete": {
+        "version": "2.19",
+        "recipe": {
+            "repo": "github.com/symfony/recipes",
+            "branch": "main",
+            "version": "2.6",
+            "ref": "07d9602b7231ba355f484305d6cea58310c01741"
+        },
+        "files": [
+            "config/routes/ux_autocomplete.yaml"
+        ]
+    },
+    "symfony/ux-toggle-password": {
+        "version": "v2.19.3"
+    },
+    "symfony/ux-turbo": {
+        "version": "v2.19.3"
     },
     "symfony/validator": {
         "version": "7.1",
@@ -196,6 +243,9 @@
     },
     "symfonycasts/verify-email-bundle": {
         "version": "v1.17.0"
+    },
+    "twig/extra-bundle": {
+        "version": "v3.12.0"
     },
     "vich/uploader-bundle": {
         "version": "2.4",

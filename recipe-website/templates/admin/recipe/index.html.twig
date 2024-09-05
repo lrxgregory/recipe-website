@@ -6,6 +6,8 @@
 
 {% block body %}
 
+	<div id="flash"></div>
+
 	<table class="table">
 		<thead>
 			<tr>
@@ -16,7 +18,7 @@
 		</thead>
 		<tbody>
 			{% for recipe in recipes %}
-				<tr>
+				<tr id=row_recipe_{{ recipe.id }}>
 					<td>
 						{{ recipe.title }}
 					</td>

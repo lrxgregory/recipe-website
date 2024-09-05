@@ -11,3 +11,8 @@
 docker-compose.yml
 /Dockerfile
 ###< symfony/framework-bundle ###
+
+###> symfony/asset-mapper ###
+/public/assets/
+/assets/vendor/
+###< symfony/asset-mapper ###
