@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
+  <file source-language="fr" target-language="en" datatype="plaintext" original="file.ext">
+    <header>
+      <tool tool-id="symfony" tool-name="Symfony"/>
+    </header>
+    <body>
+      <trans-unit id="PJ8dHq_" resname="vich_uploader.form_label.delete_confirm">
+        <source>vich_uploader.form_label.delete_confirm</source>
+        <target>Delete?</target>
+      </trans-unit>
+      <trans-unit id="SWe802A" resname="vich_uploader.link.download">
+        <source>vich_uploader.link.download</source>
+        <target>Download</target>
+      </trans-unit>
+      <trans-unit id="sfY8aNF" resname="All recipes">
+        <source>All recipes</source>
+        <target>All recipes</target>
+      </trans-unit>
+      <trans-unit id="fIVMWtl" resname="contactForm.name">
+        <source>contactForm.name</source>
+        <target>Name</target>
+      </trans-unit>
+      <trans-unit id="tJexvn6" resname="contactForm.email">
+        <source>contactForm.email</source>
+        <target>Email</target>
+      </trans-unit>
+      <trans-unit id="aoDZIml" resname="contactForm.message">
+        <source>contactForm.message</source>
+        <target>Message</target>
+      </trans-unit>
+      <trans-unit id="rZz2Nw7" resname="contactForm.send">
+        <source>contactForm.send</source>
+        <target>Send</target>
+      </trans-unit>
+      <trans-unit id="3PMa7CE" resname="Accueil">
+        <source>Accueil</source>
+        <target>Home</target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

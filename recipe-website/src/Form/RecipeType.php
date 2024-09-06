@@ -30,6 +30,7 @@ class RecipeType extends AbstractType
             ->add('duration', IntegerType::class, ['label' => 'Durée de la recette en minutes'])
             ->add('thumbnailFile', FileType::class, [
                 'label' => 'Image',
+                'required' => false,
             ])
             ->add('quantities', CollectionType::class, [
                 'entry_type' => QuantityType::class,

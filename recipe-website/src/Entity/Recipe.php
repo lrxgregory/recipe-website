@@ -8,6 +8,7 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use App\Repository\RecipeRepository;
+use Gedmo\Mapping\Annotation\Translatable;
 use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\Serializer\Annotation\Groups;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
@@ -33,6 +34,7 @@ class Recipe
     )]
     #[BanWords]
     #[Groups(['recipe.index', 'recipe.show', 'recipe.create'])]
+    #[Translatable]
     private ?string $title = null;
 
     #[ORM\Column(length: 255)]
@@ -88,7 +90,7 @@ class Recipe
 
     public function getTitle(): ?string
     {
-        return $this->title;
+        return $this->title ?? '';
     }
 
     public function setTitle(string $title): static

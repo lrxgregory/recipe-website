@@ -51,6 +51,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\OneToMany(targetEntity: Recipe::class, mappedBy: 'user')]
     private Collection $recipes;
 
+    #[ORM\Column(length: 2, options: ['default' => 'fr'])]
+    private string $locale = 'fr';
+
     public function __construct()
     {
         $this->recipes = new ArrayCollection();
@@ -193,6 +196,18 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
                 $recipe->setUser(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getLocale(): ?string
+    {
+        return $this->locale;
+    }
+
+    public function setLocale(string $locale): static
+    {
+        $this->locale = $locale;
 
         return $this;
     }

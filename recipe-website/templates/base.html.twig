@@ -18,7 +18,7 @@
 		{% block navigation %}
 			<ul class="nav">
 				<li class="nav-item">
-					<a class="nav-link {{ app.current_route == 'home' ? 'active' : '' }}" aria-current="page" href="{{ path('home') }}">Accueil</a>
+					<a class="nav-link {{ app.current_route == 'home' ? 'active' : '' }}" aria-current="page" href="{{ path('home') }}">{{'Accueil' | trans }}</a>
 				</li>
 			</ul>
 		{% endblock %}

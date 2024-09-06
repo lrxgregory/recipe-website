@@ -1,0 +1,7 @@
+All recipes: All recipes
+
+contactForm:
+  name: Name
+  email: Email
+  message: Message
+  send:	Send

@@ -3,10 +3,13 @@
 namespace App\Repository;
 
 use App\Entity\Recipe;
-use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\Query;
 use Doctrine\Persistence\ManagerRegistry;
-use Knp\Component\Pager\Pagination\PaginationInterface;
 use Knp\Component\Pager\PaginatorInterface;
+use Gedmo\Translatable\TranslatableListener;
+use Knp\Component\Pager\Pagination\PaginationInterface;
+use Gedmo\Translatable\Query\TreeWalker\TranslationWalker;
+use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 
 /**
  * @extends ServiceEntityRepository<Recipe>
@@ -26,7 +29,10 @@ class RecipeRepository extends ServiceEntityRepository
 
         // Pagination with proper alias references in the sortFieldAllowList
         return $this->paginator->paginate(
-            $queryBuilder,
+            $queryBuilder->getQuery() ->setHint(
+                Query::HINT_CUSTOM_OUTPUT_WALKER,
+                TranslationWalker::class
+            ),
             $page,
             20,
             [
