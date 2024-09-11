@@ -1,5 +1,5 @@
 controllers:
-    prefix: "{_locale}"
+    # prefix: "{_locale}"
     requirements:
         _locale: en|fr
     resource:

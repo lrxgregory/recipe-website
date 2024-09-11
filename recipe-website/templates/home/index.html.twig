@@ -5,5 +5,28 @@
 {% endblock %}
 
 {% block body %}
-	Ad eiusmod consectetur cillum incididunt ea do quis Lorem. Dolore in esse aliqua ea reprehenderit deserunt nostrud est aliqua. Ut consectetur sint non eu occaecat dolor non. Consectetur eu reprehenderit Lorem in reprehenderit est consequat dolor. Sint sunt labore magna anim ad magna anim exercitation laborum voluptate. Ullamco tempor velit cillum Lorem in labore id sunt enim velit laboris quis incididunt.
+	<div id="flash"></div>
+
+	<table class="table">
+		<thead>
+			<tr>
+				<th>{{ knp_pagination_sortable(recipes, 'Titre', 'r.title') }}</th>
+				<th>{{ knp_pagination_sortable(recipes, 'Catégorie', 'c.name') }}</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for recipe in recipes %}
+				<tr id=row_recipe_{{ recipe.id }}>
+					<td>
+						{{ recipe.title }}
+					</td>
+					<td>
+						{{ recipe.category.name | default('')}}
+					</td>
+				</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+
+	{{ knp_pagination_render(recipes) }}
 {% endblock %}
